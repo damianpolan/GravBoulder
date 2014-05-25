@@ -1,0 +1,11 @@
+package gravboulder.game;
+
+public class GLRenderer
+{
+	private final float[] mtrxProjection = new float[16];
+	private final float[] mtrxView = new float[16];
+	private final float[] mtrxProjectionAndView = new float[16];
+	
+	
+
+}

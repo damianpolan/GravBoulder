@@ -1,6 +1,7 @@
 package gravboulder.gravboulder;
 
 
+import gravboulder.game.GLRenderer;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
@@ -25,7 +26,7 @@ public class GLSurf extends GLSurfaceView {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
-	  mRenderer.processTouchEvent(e);
+	  //mRenderer.processTouchEvent(e);
 	  return true;
 	}
 	

@@ -1,0 +1,9 @@
+package gravboulder.game.orientation;
+
+public class Vector
+{
+	public float[] vectorArray; 
+	
+	
+	
+}

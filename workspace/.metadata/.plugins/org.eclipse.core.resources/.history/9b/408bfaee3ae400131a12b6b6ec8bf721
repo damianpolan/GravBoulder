@@ -1,0 +1,16 @@
+package gravboulder.game;
+
+import gravboulder.game.orientation.Vector;
+
+
+
+
+public class Sprite
+{
+	Vector position;
+	
+	public Sprite()
+	{
+		
+	}
+}

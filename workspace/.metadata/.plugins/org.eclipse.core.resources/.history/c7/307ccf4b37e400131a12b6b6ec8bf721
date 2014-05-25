@@ -1,0 +1,39 @@
+package gravboulder.game.orientation;
+
+public class Vector
+{
+	public float[] vectorArray; 
+	
+	public Vector()
+	{
+		
+	}
+	
+	public Vector(float ... params)
+	{
+		
+	}
+	
+	
+	
+	public Vector add()
+	{
+		
+	}
+	
+	public Vector subtract()
+	{
+		
+	}
+	
+	public Vector divide()
+	{
+		
+	}
+	
+	public Vector multiply()
+	{
+		
+	}
+	
+}

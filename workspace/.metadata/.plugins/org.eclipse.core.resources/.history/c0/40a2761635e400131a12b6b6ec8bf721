@@ -1,0 +1,8 @@
+package gravboulder.game;
+
+import android.graphics.PointF;
+
+public class Sprite
+{
+	
+}
