@@ -1,0 +1,24 @@
+package gravboulder.game;
+
+public class TextSprite {
+    
+    public String text;
+    public PointF position;
+    public float[] color;
+     
+    public TextSprite()
+    {
+        text = "default";
+        x = 0f;
+        y = 0f;
+        color = new float[] {1f, 1f, 1f, 1.0f};
+    }
+     
+    public TextSprite(String txt, float x, float y)
+    {
+        text = txt;
+        x = xcoord;
+        y = ycoord;
+        color = new float[] {1f, 1f, 1f, 1.0f};
+    }
+}

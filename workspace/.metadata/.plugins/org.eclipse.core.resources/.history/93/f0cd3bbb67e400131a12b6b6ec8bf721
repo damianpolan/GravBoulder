@@ -3,6 +3,7 @@ package gravboulder.game;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import gravboulder.game.orientation.Vector;
 
 public class Sprite
 {

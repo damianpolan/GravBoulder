@@ -3,10 +3,11 @@ package gravboulder.game;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import gravboulder.game.orientation.Vector;
 
 public class Sprite
 {
-	public PointF position;
+	public Vector position;
 	public float rotation;
 	public float scale;
 
@@ -16,13 +17,14 @@ public class Sprite
 
 	public Sprite()
 	{
-		position = new PointF();
+		position = Vector.Zero3();
 		rotation = 0;
 		scale = 1f;
 	}
 
 	public float[] getTransformedVertices()
 	{
+		RectF base = new RectF(-texture.getWidth() / 2, texture.getHeight() / 2, texture.getWidth() / 2, -texture.getHeight() / 2);
 		RectF base = new RectF(-texture.getWidth() / 2, texture.getHeight() / 2, texture.getWidth() / 2, -texture.getHeight() / 2);
 		// Start with scaling
 		float x1 = base.left * scale;
@@ -53,17 +55,17 @@ public class Sprite
 		four.y = x2 * s + y2 * c;
 
 		// Finally we translate the sprite to its correct position.
-		one.x += position.x;
-		one.y += position.y;
-		two.x += position.x;
-		two.y += position.y;
-		three.x += position.x;
-		three.y += position.y;
-		four.x += position.x;
-		four.y += position.y;
+		one.x += position.get(0);
+		one.y += position.get(1);
+		two.x += position.get(0);
+		two.y += position.get(1);
+		three.x += position.get(0);
+		three.y += position.get(1);
+		four.x += position.get(0);
+		four.y += position.get(1);
 
 		// We now return our float array of vertices.
-		return new float[] { one.x, one.y, 0, two.x, two.y, 0, three.x, three.y, 0, four.x, four.y,
-				0, };
+		return new float[] { one.x, one.y, position.get(2), two.x, two.y, position.get(2), three.x, three.y, position.get(2), four.x, four.y,
+				position.get(2), };
 	}
 }

@@ -1,6 +1,5 @@
 package gravboulder.game.orientation;
 
-//unused
 public class Vector
 {
 	public float[] vArray;

@@ -1,5 +1,6 @@
 package gravboulder.game;
 
+import gravboulder.game.orientation.Vector;
 import gravboulder.gravboulder.riGraphicTools;
 
 import java.nio.ByteBuffer;

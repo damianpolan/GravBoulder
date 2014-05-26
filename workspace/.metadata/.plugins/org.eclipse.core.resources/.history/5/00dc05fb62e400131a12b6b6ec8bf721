@@ -1,5 +1,6 @@
 package gravboulder.game;
 
+import gravboulder.game.orientation.Vector;
 import gravboulder.gravboulder.riGraphicTools;
 
 import java.nio.ByteBuffer;
@@ -15,7 +16,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.graphics.PointF;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLUtils;
@@ -49,9 +49,9 @@ public class GLRenderer implements Renderer
 
 		s1.texture = BitmapFactory.decodeResource(mContext.getResources(), mContext.getResources().getIdentifier("drawable/orange", null, mContext.getPackageName()));
 		s2.texture = BitmapFactory.decodeResource(mContext.getResources(), mContext.getResources().getIdentifier("drawable/ic_launcher", null, mContext.getPackageName()));
-		s1.position = new PointF(400, 400);
-		s2.position = new PointF(100, 100);
-		s1.layer = -1;
+		s1.position = new Vector(400, 400, 0);
+		s2.position = new Vector(100, 100, 0);
+		s1.layer = 1;
 		renderBatch.add(s1);
 		renderBatch.add(s2);
 
@@ -79,14 +79,14 @@ public class GLRenderer implements Renderer
 		if (mLastTime > now)
 			return;
 
-		Collections.sort(renderBatch, new Comparator<Sprite>()
-		{
-			@Override
-			public int compare(Sprite arg0, Sprite arg1)
-			{
-				return arg0.layer - arg1.layer;
-			}
-		});
+//		Collections.sort(renderBatch, new Comparator<Sprite>()
+//		{
+//			@Override
+//			public int compare(Sprite arg0, Sprite arg1)
+//			{
+//				return arg0.layer - arg1.layer;
+//			}
+//		});
 
 		preRender();
 		for (int i = 0; i < renderBatch.size(); i++)
@@ -192,8 +192,6 @@ public class GLRenderer implements Renderer
 		GLES20.glDisableVertexAttribArray(mPositionHandle);
 		GLES20.glDisableVertexAttribArray(mTexCoordLoc);
 
-		//
-		GLES20.glDeleteTextures(1, texturenames, 0);
 	}
 
 	@Override

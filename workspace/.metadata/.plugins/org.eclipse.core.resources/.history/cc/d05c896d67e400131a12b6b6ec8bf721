@@ -1,5 +1,6 @@
 package gravboulder.game;
 
+import gravboulder.game.orientation.Vector;
 import gravboulder.gravboulder.riGraphicTools;
 
 import java.nio.ByteBuffer;
@@ -88,6 +89,7 @@ public class GLRenderer implements Renderer
 			}
 		});
 
+		renderBatch.get(0).rotation += 1;
 		preRender();
 		for (int i = 0; i < renderBatch.size(); i++)
 		{
