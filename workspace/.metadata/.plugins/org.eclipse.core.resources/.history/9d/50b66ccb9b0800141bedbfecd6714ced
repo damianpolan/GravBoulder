@@ -1,0 +1,54 @@
+package com.example.gravboulder.menu;
+
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
+import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.Sprite;
+
+import android.R;
+import android.content.Intent;
+import android.view.Display;
+
+import com.example.gravboulder.Resource;
+
+public class SplashScene extends Scene
+{
+
+	public SplashScene()
+	{
+
+		
+		Sprite splashSprite = new Sprite(0, 0, Resource.menuTextureHolder.textureRegion_SplashScreen, Resource.getCurrActivity()
+				.getVertexBufferObjectManager());
+		attachChild(splashSprite);
+
+		Display display = Resource.getCurrActivity().getWindowManager().getDefaultDisplay();
+		float ratio = (float) display.getHeight() / (float) display.getWidth();
+
+		Resource.getCurrActivity().getEngine().getCamera().setXMax(splashSprite.getWidth());
+		Resource.getCurrActivity().getEngine().getCamera().setXMin(0);
+		Resource.getCurrActivity().getEngine().getCamera().setYMax(splashSprite.getWidth() * ratio);
+		Resource.getCurrActivity().getEngine().getCamera().setYMin(0);
+		Resource.getCurrActivity().getEngine().getCamera().setCenter(splashSprite.getWidth() / 2f, splashSprite.getHeight() / 2f);
+
+		TimerHandler splashTimer = new TimerHandler(1, new ITimerCallback()
+		{
+			@Override
+			public void onTimePassed(TimerHandler pTimerHandler)
+			{
+				//Resource.getCurrActivity().finish();//ensures you cannot go back to the splash scene
+
+				//Resource.getCurrActivity().overridePendingTransition(R.anim., R.anim.fade_in);
+				
+				Resource.getCurrActivity().startActivity(new Intent(Resource.getCurrActivity(), MainMenuActivity.class));
+				//splashActivity.getEngine().setScene(new MainMenuScene(gameActivity));
+			}
+		});
+		this.registerUpdateHandler(splashTimer);
+
+	}
+}
+
+
+
+

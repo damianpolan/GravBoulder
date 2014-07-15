@@ -1,0 +1,67 @@
+package com.example.gravboulder.resource;
+
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.util.color.Color;
+
+public class GameTextureHolder
+{
+	BaseGameActivity gameActivity;
+
+	public BitmapTextureAtlas mapTextureAtlas;
+	public ITextureRegion textureRegion_Block_exp0;
+	public ITextureRegion textureRegion_Block_exp1;
+	public ITextureRegion textureRegion_Block_exp2;
+	public ITextureRegion textureRegion_Block_exp2R;
+	public ITextureRegion textureRegion_Block_exp3;
+	public ITextureRegion textureRegion_Block_exp4;
+	public ITextureRegion textureRegion_Boulder;
+
+	public BitmapTextureAtlas hudTextureAtlas;
+	public ITextureRegion textureRegion_hud_restart;
+	public ITextureRegion textureRegion_hud_home;
+	public ITextureRegion textureRegion_hud_white;
+	public ITextureRegion textureRegion_hud_levelSelect;
+
+	public Font font;
+
+	public GameTextureHolder(BaseGameActivity gameActivity)
+	{
+		this.gameActivity = gameActivity;
+	}
+
+	public void loadTextures(int mapArtType)
+	{
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/Maps/" + mapArtType + "/");
+
+		mapTextureAtlas = new BitmapTextureAtlas(gameActivity.getTextureManager(), 1024, 512, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		textureRegion_Boulder = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "boulder.png", 0, 0);
+		textureRegion_Block_exp0 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_0.png", 256, 0);
+		textureRegion_Block_exp1 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_1.png", 512, 0);
+		textureRegion_Block_exp2 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_2.png", 768, 0);
+		textureRegion_Block_exp2R = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_2R.png", 0, 256);
+		textureRegion_Block_exp3 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_3.png", 256, 256);
+		textureRegion_Block_exp4 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mapTextureAtlas, gameActivity, "block_exp_4.png", 512, 256);
+		mapTextureAtlas.load();
+
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/HUD/");
+		hudTextureAtlas = new BitmapTextureAtlas(gameActivity.getTextureManager(), 512, 512, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		textureRegion_hud_restart = BitmapTextureAtlasTextureRegionFactory.createFromAsset(hudTextureAtlas, gameActivity, "Restart.png", 0, 0);
+		textureRegion_hud_home = BitmapTextureAtlasTextureRegionFactory.createFromAsset(hudTextureAtlas, gameActivity, "Home.png", 256, 0);
+		textureRegion_hud_white = BitmapTextureAtlasTextureRegionFactory.createFromAsset(hudTextureAtlas, gameActivity, "White.png", 0, 256);
+		textureRegion_hud_levelSelect = BitmapTextureAtlasTextureRegionFactory.createFromAsset(hudTextureAtlas, gameActivity, "SelectLevel.png", 256, 256);
+		hudTextureAtlas.load();
+		
+		FontFactory.setAssetBasePath("fonts/");
+		font = FontFactory.createFromAsset(gameActivity.getFontManager(), gameActivity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA,
+				gameActivity.getAssets(), "High School USA Sans.ttf", 12, true, Color.BLACK.getARGBPackedInt());
+		font.load();
+
+	}
+
+}

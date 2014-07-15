@@ -1,0 +1,58 @@
+package com.example.gravboulder.menu;
+
+import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.ButtonSprite;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.view.Display;
+
+import com.example.gravboulder.R;
+import com.example.gravboulder.RelCoo;
+import com.example.gravboulder.Resource;
+
+public class MainMenuScene extends Scene
+{
+	
+	
+
+	public MainMenuScene()
+	{
+		
+		Display display = Resource.getCurrActivity().getWindowManager().getDefaultDisplay();
+		float ratio = (float) display.getHeight() / (float) display.getWidth();
+
+		Resource.getCurrActivity().getEngine().getCamera().setXMax(300);
+		Resource.getCurrActivity().getEngine().getCamera().setXMin(0);
+		Resource.getCurrActivity().getEngine().getCamera().setYMax(300 * ratio);
+		Resource.getCurrActivity().getEngine().getCamera().setYMin(0);
+
+		RelCoo.dimsX = 300;
+		RelCoo.dimsY = 300 * ratio;
+
+		final ButtonSprite playSprite = new ButtonSprite(RelCoo.getRelX(0.5f, true), RelCoo.getRelY(0.4f, true),
+				Resource.menuTextureHolder.textureRegion_Play, Resource.getCurrActivity().getVertexBufferObjectManager());
+		RelCoo.displaceToCentre(playSprite);
+		playSprite.setOnClickListener(new ButtonSprite.OnClickListener()
+		{
+			@Override
+			public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY)
+			{
+				//playSprite.setColor(new Color(0.5f, 0.5f, 0.5f));
+				Resource.getCurrActivity().startActivity(new Intent(Resource.getCurrActivity(), GameActivity.class));				
+				Resource.getCurrActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_out_left);
+				
+			}
+		});
+		registerTouchArea(playSprite);
+		attachChild(playSprite);
+		
+
+		final ButtonSprite levelSprite = new ButtonSprite(RelCoo.getRelX(0.5f, true), RelCoo.getRelY(0.5f, true),
+				Resource.menuTextureHolder.textureRegion_LevelSelect, Resource.getCurrActivity().getVertexBufferObjectManager());
+		RelCoo.displaceToCentre(levelSprite);
+		registerTouchArea(levelSprite);
+		attachChild(levelSprite);
+
+	}
+}

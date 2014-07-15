@@ -1,0 +1,21 @@
+
+Textures:
+	//set the default path
+	BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/Maps/" + mapArtType + "/");
+	
+	//create the texture atalas with a size to hold all textures
+	BitmapTextureAtlas atlas = new BitmapTextureAtlas(gameActivity.getTextureManager(), 1024, 512, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+	
+	//add the texture to the texture atlas
+	//the x and y define where the texture will be placed on the texture atlas
+	ITextureRegion region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(atlas, gameActivity, "boulder.png", 0, 0); 
+
+	//load the atlas data
+	atlas.load
+	
+Fonts:
+
+		FontFactory.setAssetBasePath("fonts/");
+		Font font = FontFactory.createFromAsset(gameActivity.getFontManager(), gameActivity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA,
+				gameActivity.getAssets(), "High School USA Sans.ttf", 12, true, Color.BLACK.getARGBPackedInt());
+		font.load();

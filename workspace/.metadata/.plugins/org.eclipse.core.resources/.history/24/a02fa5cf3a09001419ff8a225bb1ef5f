@@ -1,0 +1,43 @@
+package com.example.gravboulder.menu;
+
+import org.andengine.engine.camera.ZoomCamera;
+import org.andengine.engine.options.EngineOptions;
+import org.andengine.engine.options.ScreenOrientation;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
+import org.andengine.entity.scene.Scene;
+import org.andengine.ui.activity.SimpleBaseGameActivity;
+
+import com.example.gravboulder.Resource;
+
+public class MainMenuActivity extends SimpleBaseGameActivity
+{
+	
+	public MainMenuActivity()
+	{
+		Resource.changeActivity(this);
+	}
+
+	
+	@Override
+	public EngineOptions onCreateEngineOptions()
+	{
+		ZoomCamera camera = new ZoomCamera(0, 0, 200, 200);
+
+		EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), camera);
+		engineOptions.getAudioOptions().setNeedsSound(true);
+		return engineOptions;
+	}
+
+	@Override
+	protected void onCreateResources()
+	{	
+		Resource.loadMenuRes();
+	}
+
+	@Override
+	protected Scene onCreateScene()
+	{
+		return new MainMenuScene();
+	}
+
+}

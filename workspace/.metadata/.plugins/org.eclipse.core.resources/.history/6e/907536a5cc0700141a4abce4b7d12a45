@@ -1,0 +1,8 @@
+package com.example.gravboulder.menu;
+
+import org.andengine.ui.activity.SimpleBaseGameActivity;
+
+public class MainMenuActivity extends SimpleBaseGameActivity
+{
+
+}

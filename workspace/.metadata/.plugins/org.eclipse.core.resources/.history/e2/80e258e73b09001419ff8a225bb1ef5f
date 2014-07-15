@@ -1,0 +1,58 @@
+package com.example.gravboulder.menu;
+
+import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.ButtonSprite;
+
+import android.content.Intent;
+import android.view.Display;
+
+import com.example.gravboulder.R;
+import com.example.gravboulder.RelCoo;
+import com.example.gravboulder.Resource;
+
+public class MainMenuScene extends Scene
+{
+	
+	public boolean loaded;
+
+	public MainMenuScene()
+	{
+		
+		Display display = Resource.get().getCurrActivity().getWindowManager().getDefaultDisplay();
+		float ratio = (float) display.getHeight() / (float) display.getWidth();
+
+		Resource.get().getCurrActivity().getEngine().getCamera().setXMax(300);
+		Resource.get().getCurrActivity().getEngine().getCamera().setXMin(0);
+		Resource.get().getCurrActivity().getEngine().getCamera().setYMax(300 * ratio);
+		Resource.get().getCurrActivity().getEngine().getCamera().setYMin(0);
+
+		RelCoo.dimsX = 300;
+		RelCoo.dimsY = 300 * ratio;
+
+		final ButtonSprite playSprite = new ButtonSprite(RelCoo.getRelX(0.5f, true), RelCoo.getRelY(0.4f, true),
+				Resource.get().menuTextureHolder.textureRegion_Play, Resource.get().getCurrActivity().getVertexBufferObjectManager());
+		RelCoo.displaceToCentre(playSprite);
+		playSprite.setOnClickListener(new ButtonSprite.OnClickListener()
+		{
+			@Override
+			public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY)
+			{
+				//playSprite.setColor(new Color(0.5f, 0.5f, 0.5f));
+				Resource.get().getCurrActivity().startActivity(new Intent(Resource.get().getCurrActivity(), GameActivity.class));				
+				Resource.get().getCurrActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_out_left);
+				
+				//TODO: MAKE TRANSITION WORK ON SECOND PLAY PRESS
+			}
+		});
+		registerTouchArea(playSprite);
+		attachChild(playSprite);
+		
+
+		final ButtonSprite levelSprite = new ButtonSprite(RelCoo.getRelX(0.5f, true), RelCoo.getRelY(0.5f, true),
+				Resource.get().menuTextureHolder.textureRegion_LevelSelect, Resource.get().getCurrActivity().getVertexBufferObjectManager());
+		RelCoo.displaceToCentre(levelSprite);
+		registerTouchArea(levelSprite);
+		attachChild(levelSprite);
+
+	}
+}
